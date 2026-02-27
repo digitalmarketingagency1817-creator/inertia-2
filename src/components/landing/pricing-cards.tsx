@@ -1,0 +1,163 @@
+"use client";
+
+import { useState } from "react";
+import { motion } from "motion/react";
+import { Check, Minus } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { AnimatedSection } from "./animated-section";
+
+const PLANS = [
+  {
+    name: "Free",
+    price: "$0",
+    period: "forever",
+    desc: "Get started with the essentials",
+    features: [
+      { text: "Daily money decisions", included: true },
+      { text: "Basic pattern insights", included: true },
+      { text: "3 financial goals", included: true },
+      { text: "Weekly summary", included: true },
+      { text: "Advanced analytics", included: false },
+      { text: "Family sharing", included: false },
+      { text: "Priority support", included: false },
+    ],
+    cta: "Join waitlist",
+    highlighted: false,
+  },
+  {
+    name: "Core",
+    price: "$8",
+    period: "/month",
+    desc: "For people getting serious about their money",
+    features: [
+      { text: "Daily money decisions", included: true },
+      { text: "Full pattern insights", included: true },
+      { text: "Unlimited goals", included: true },
+      { text: "Daily + weekly summaries", included: true },
+      { text: "Advanced analytics", included: true },
+      { text: "Family sharing (2)", included: true },
+      { text: "Priority support", included: false },
+    ],
+    cta: "Join waitlist",
+    highlighted: true,
+  },
+  {
+    name: "Family",
+    price: "$14",
+    period: "/month",
+    desc: "Your whole household, one financial picture",
+    features: [
+      { text: "Daily money decisions", included: true },
+      { text: "Full pattern insights", included: true },
+      { text: "Unlimited goals", included: true },
+      { text: "Real-time summaries", included: true },
+      { text: "Advanced analytics", included: true },
+      { text: "Family sharing (6)", included: true },
+      { text: "Priority support", included: true },
+    ],
+    cta: "Join waitlist",
+    highlighted: false,
+  },
+];
+
+type TabId = "features" | "pricing";
+
+export function PricingCards() {
+  const [tab, setTab] = useState<TabId>("pricing");
+
+  return (
+    <AnimatedSection className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
+      <div className="mx-auto max-w-5xl">
+        <h2 className="text-center font-serif text-3xl leading-tight font-bold text-inertia-primary md:text-4xl lg:text-5xl">
+          Simple, honest pricing
+        </h2>
+
+        {/* Tab switcher */}
+        <div className="mt-8 flex justify-center">
+          <div className="inline-flex rounded-full border border-inertia-primary/10 bg-white p-1">
+            {(["features", "pricing"] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
+                  tab === t
+                    ? "bg-inertia-primary text-white"
+                    : "text-inertia-secondary/60 hover:text-inertia-primary"
+                }`}
+              >
+                {t === "features" ? "Features" : "Pricing"}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {PLANS.map((plan, i) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <Card
+                className={`relative flex h-full flex-col overflow-hidden border-2 p-6 ${
+                  plan.highlighted
+                    ? "border-inertia-accent bg-white shadow-xl"
+                    : "border-inertia-tint/30 bg-white"
+                }`}
+              >
+                {plan.highlighted && (
+                  <div className="absolute top-0 right-0 left-0 h-1 bg-inertia-accent" />
+                )}
+
+                <div>
+                  <h3 className="font-serif text-xl font-bold text-inertia-primary">{plan.name}</h3>
+                  <div className="mt-2 flex items-baseline gap-1">
+                    <span className="font-serif text-4xl font-bold text-inertia-primary">
+                      {plan.price}
+                    </span>
+                    <span className="text-sm text-inertia-secondary/50">{plan.period}</span>
+                  </div>
+                  <p className="mt-2 text-sm text-inertia-secondary/60">{plan.desc}</p>
+                </div>
+
+                <div className="mt-6 flex-1 space-y-3">
+                  {plan.features.map((f) => (
+                    <div key={f.text} className="flex items-center gap-2.5">
+                      {f.included ? (
+                        <Check size={16} className="shrink-0 text-inertia-accent" />
+                      ) : (
+                        <Minus size={16} className="shrink-0 text-inertia-secondary/20" />
+                      )}
+                      <span
+                        className={`text-sm ${
+                          f.included ? "text-inertia-primary" : "text-inertia-secondary/30"
+                        }`}
+                      >
+                        {f.text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                <Button
+                  asChild
+                  className={`mt-8 w-full rounded-full ${
+                    plan.highlighted
+                      ? "bg-inertia-primary text-white hover:bg-inertia-secondary"
+                      : "border border-inertia-primary/20 bg-white text-inertia-primary hover:bg-inertia-tint/30"
+                  }`}
+                  variant={plan.highlighted ? "default" : "outline"}
+                >
+                  <a href="#waitlist">{plan.cta}</a>
+                </Button>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </AnimatedSection>
+  );
+}
