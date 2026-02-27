@@ -22,13 +22,13 @@ export function Navigation() {
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
       className="fixed top-0 right-0 left-0 z-50 bg-[#FAFAF7]/95 backdrop-blur-md"
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8">
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 md:px-12 lg:px-16">
         <Image
           src="/images/inertia-wordmark.png"
           alt="Inertia"
-          width={100}
-          height={28}
-          className="h-7 w-auto"
+          width={140}
+          height={40}
+          className="h-9 w-auto"
         />
 
         {/* Desktop nav — pill buttons from Figma */}

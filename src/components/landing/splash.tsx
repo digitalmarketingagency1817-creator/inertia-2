@@ -42,9 +42,9 @@ export function Splash() {
       <Image
         src="/images/inertia-wordmark.png"
         alt="Inertia"
-        width={800}
-        height={200}
-        className="h-auto w-[clamp(300px,60vw,800px)]"
+        width={1200}
+        height={300}
+        className="h-auto w-[clamp(320px,70vw,1000px)]"
         priority
       />
 
