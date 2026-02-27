@@ -33,30 +33,27 @@ const QUESTIONS = [
     q: "Is Inertia free?",
     a: "We'll offer a generous free tier that covers the essentials. Premium features like advanced insights, family sharing, and priority support will be available in paid plans.",
   },
+  {
+    q: "Can Inertia help if I'm already in debt?",
+    a: "Yes. Inertia doesn't judge where you're starting from. It helps you see what to focus on first, break things into manageable steps, and build momentum — regardless of your current situation.",
+  },
 ];
 
 export function FAQ() {
   return (
-    <AnimatedSection className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
+    <AnimatedSection className="bg-[#FAFAF7] px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-3xl">
-        <h2 className="text-center font-serif text-3xl leading-tight font-bold text-inertia-primary md:text-4xl lg:text-5xl">
-          Things we&apos;d ask you
+        <h2 className="text-center font-[family-name:var(--font-frank)] text-3xl leading-tight font-medium tracking-[-0.01em] text-[#153828] md:text-4xl lg:text-[56px]">
+          Things we&apos;d ask too
         </h2>
-        <p className="mt-4 text-center text-base text-inertia-secondary/60">
-          (and things you might ask us)
-        </p>
 
         <Accordion type="single" collapsible className="mt-12">
           {QUESTIONS.map((item, i) => (
-            <AccordionItem
-              key={i}
-              value={`faq-${i}`}
-              className="border-b border-inertia-tint/30"
-            >
-              <AccordionTrigger className="py-5 text-left font-sans text-base font-semibold text-inertia-primary hover:text-inertia-accent hover:no-underline">
+            <AccordionItem key={i} value={`faq-${i}`} className="border-b border-[#C4DED0]/30">
+              <AccordionTrigger className="py-5 text-left font-[family-name:var(--font-dm-sans)] text-base font-semibold text-[#153828] hover:text-[#2FA47A] hover:no-underline">
                 {item.q}
               </AccordionTrigger>
-              <AccordionContent className="pb-5 text-sm leading-relaxed text-inertia-secondary/70">
+              <AccordionContent className="pb-5 font-[family-name:var(--font-dm-sans)] text-sm leading-relaxed text-[#8C938E]">
                 {item.a}
               </AccordionContent>
             </AccordionItem>

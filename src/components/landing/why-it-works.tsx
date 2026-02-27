@@ -1,64 +1,77 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Brain, Repeat, LineChart, Shield } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { ArrowRight } from "lucide-react";
 import { AnimatedSection } from "./animated-section";
 
 const FEATURES = [
   {
-    icon: Brain,
-    title: "Behavioral insights",
-    desc: "Built on real psychology — not arbitrary rules. We understand why people actually struggle with money.",
+    number: "01",
+    title: "It works with your habits",
+    desc: "Instead of forcing you into rigid categories, Inertia learns how you actually behave with money — and adapts its guidance to match your rhythm.",
   },
   {
-    icon: Repeat,
-    title: "Daily micro-decisions",
-    desc: "Small choices compound. A few mindful moments each day create lasting financial habits.",
+    number: "02",
+    title: "It lowers the mental load",
+    desc: "No more decision fatigue. Inertia breaks complex financial choices into small, manageable moments throughout your day.",
   },
   {
-    icon: LineChart,
-    title: "Adaptive learning",
-    desc: "Inertia gets smarter the more you use it — adjusting to your patterns, not forcing you into a template.",
-  },
-  {
-    icon: Shield,
-    title: "No judgment zone",
-    desc: "Spent too much on coffee? No guilt trips. We help you course-correct without the shame spiral.",
+    number: "03",
+    title: "It adapts as life changes",
+    desc: "Your financial life isn't static — and neither is Inertia. It evolves with you through new jobs, moves, relationships, and goals.",
   },
 ];
 
 export function WhyItWorks() {
   return (
-    <AnimatedSection className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
+    <AnimatedSection className="bg-[#FAFAF7] px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <h2 className="text-center font-serif text-3xl leading-tight font-bold text-inertia-primary md:text-4xl lg:text-5xl">
-          Why Inertia <span className="text-inertia-accent">works</span>
+        <h2 className="text-center font-[family-name:var(--font-frank)] text-3xl leading-tight font-medium tracking-[-0.01em] text-[#153828] md:text-4xl lg:text-[56px]">
+          Why Inertia works
         </h2>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {FEATURES.map((feature, i) => (
             <motion.div
-              key={feature.title}
+              key={feature.number}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="rounded-2xl border border-[#C4DED0]/30 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <Card className="group h-full border-inertia-tint/30 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-inertia-tint/50 text-inertia-primary transition-colors group-hover:bg-inertia-accent group-hover:text-white">
-                  <feature.icon size={22} />
-                </div>
-                <h3 className="font-serif text-lg font-bold text-inertia-primary">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-inertia-secondary/60">
-                  {feature.desc}
-                </p>
-              </Card>
+              <span className="font-[family-name:var(--font-dm-mono)] text-sm font-medium tracking-[0.05em] text-[#2FA47A] uppercase">
+                {feature.number}
+              </span>
+              <h3 className="mt-3 font-[family-name:var(--font-frank)] text-xl font-medium text-[#153828]">
+                {feature.title}
+              </h3>
+              <p className="mt-3 font-[family-name:var(--font-dm-sans)] text-sm leading-relaxed text-[#8C938E]">
+                {feature.desc}
+              </p>
             </motion.div>
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-16 text-center"
+        >
+          <p className="font-[family-name:var(--font-dm-sans)] text-lg text-[#153828]">
+            Ready to take control of your finances?
+          </p>
+          <a
+            href="#waitlist"
+            className="mt-4 inline-flex items-center gap-2 rounded-[24px] bg-[#0F3D2E] px-8 py-3.5 font-[family-name:var(--font-dm-sans)] text-sm font-semibold text-white transition-colors hover:bg-[#153828]"
+          >
+            Join our waitlist
+            <ArrowRight size={16} />
+          </a>
+        </motion.div>
       </div>
     </AnimatedSection>
   );

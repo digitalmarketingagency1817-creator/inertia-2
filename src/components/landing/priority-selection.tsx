@@ -1,78 +1,136 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useState, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { GripVertical, X } from "lucide-react";
 import { AnimatedSection } from "./animated-section";
 
 const PRIORITIES = [
-  "Save for emergencies",
-  "Pay off debt",
+  "Paying off debt",
+  "Saving for emergencies",
+  "Reducing impulsive spending",
+  "Building a side income",
+  "Investing for retirement",
   "Travel more",
-  "Invest for retirement",
   "Buy a home",
-  "Build a side income",
-  "Reduce impulsive spending",
   "Support family",
   "Start a business",
   "Live more intentionally",
 ];
 
 export function PrioritySelection() {
-  const [selectedPriorities, setSelectedPriorities] = useState<string[]>([]);
+  const [selected, setSelected] = useState<string[]>([]);
 
-  const togglePriority = (priority: string) => {
-    setSelectedPriorities((prev) =>
-      prev.includes(priority) ? prev.filter((p) => p !== priority) : [...prev, priority],
-    );
-  };
+  const togglePriority = useCallback((priority: string) => {
+    setSelected((prev) => {
+      if (prev.includes(priority)) {
+        return prev.filter((p) => p !== priority);
+      }
+      if (prev.length >= 3) return prev;
+      return [...prev, priority];
+    });
+  }, []);
+
+  const removePriority = useCallback((priority: string) => {
+    setSelected((prev) => prev.filter((p) => p !== priority));
+  }, []);
+
+  const available = PRIORITIES.filter((p) => !selected.includes(p));
 
   return (
-    <AnimatedSection className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
-      <div className="mx-auto max-w-4xl text-center">
-        <h2 className="font-serif text-3xl leading-tight font-bold text-inertia-primary md:text-4xl lg:text-5xl">
-          What feels most important
-          <br />
-          <span className="text-inertia-accent">to you right now?</span>
+    <AnimatedSection className="bg-[#FAFAF7] px-4 py-20 md:px-8 md:py-28">
+      <div className="mx-auto max-w-4xl">
+        <h2 className="text-center font-[family-name:var(--font-frank)] text-3xl leading-tight font-medium tracking-[-0.01em] text-[#153828] md:text-4xl lg:text-[56px]">
+          Select your top three priorities
         </h2>
-        <p className="mt-4 text-base text-inertia-secondary/60">
-          Pick as many as you like. This is your starting point.
-        </p>
 
-        <div className="mt-12 flex flex-wrap justify-center gap-3">
-          {PRIORITIES.map((priority, i) => {
-            const isSelected = selectedPriorities.includes(priority);
-            return (
-              <motion.button
-                key={priority}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.04 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => togglePriority(priority)}
-                className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all ${
-                  isSelected
-                    ? "bg-inertia-primary text-white shadow-md"
-                    : "border border-inertia-primary/20 bg-white text-inertia-primary hover:border-inertia-accent hover:bg-inertia-tint/30"
-                }`}
-              >
-                {isSelected && "✓ "}
-                {priority}
-              </motion.button>
-            );
-          })}
+        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+          {/* Left: Available items */}
+          <div>
+            <div className="mb-4 flex items-center gap-2">
+              <GripVertical size={16} className="text-[#8C938E]" />
+              <span className="font-[family-name:var(--font-dm-mono)] text-xs tracking-[0.05em] text-[#8C938E] uppercase">
+                CLICK & DRAG
+              </span>
+            </div>
+            <div className="space-y-2">
+              {available.map((priority, i) => (
+                <motion.button
+                  key={priority}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: i * 0.03 }}
+                  onClick={() => togglePriority(priority)}
+                  disabled={selected.length >= 3}
+                  className={`flex w-full items-center gap-3 rounded-xl border border-[#C4DED0]/40 bg-white px-4 py-3 text-left transition-all ${
+                    selected.length >= 3
+                      ? "cursor-not-allowed opacity-50"
+                      : "cursor-pointer hover:border-[#2FA47A] hover:shadow-sm"
+                  }`}
+                >
+                  <GripVertical size={14} className="shrink-0 text-[#C4DED0]" />
+                  <span className="font-[family-name:var(--font-dm-sans)] text-sm text-[#153828]">
+                    {priority}
+                  </span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: "This matters zone" */}
+          <div>
+            <div className="mb-4 flex items-center justify-between">
+              <span className="font-[family-name:var(--font-dm-mono)] text-xs tracking-[0.05em] text-[#2FA47A] uppercase">
+                This matters zone
+              </span>
+              <span className="font-[family-name:var(--font-dm-mono)] text-xs tracking-[0.05em] text-[#8C938E] uppercase">
+                {selected.length}/3 Selected
+              </span>
+            </div>
+
+            <div className="min-h-[240px] rounded-2xl border-2 border-dashed border-[#C4DED0] bg-[#E2F7F1]/20 p-4">
+              <AnimatePresence mode="popLayout">
+                {selected.length === 0 ? (
+                  <motion.p
+                    key="placeholder"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="py-16 text-center font-[family-name:var(--font-dm-sans)] text-sm text-[#8C938E]"
+                  >
+                    Drag items here
+                  </motion.p>
+                ) : (
+                  selected.map((priority, i) => (
+                    <motion.div
+                      key={priority}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      layout
+                      className="mb-2 flex items-center justify-between rounded-xl border border-[#2FA47A]/30 bg-white px-4 py-3"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="font-[family-name:var(--font-dm-mono)] text-xs font-medium text-[#2FA47A]">
+                          {i + 1}
+                        </span>
+                        <span className="font-[family-name:var(--font-dm-sans)] text-sm font-medium text-[#153828]">
+                          {priority}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => removePriority(priority)}
+                        className="text-[#8C938E] transition-colors hover:text-[#153828]"
+                      >
+                        <X size={14} />
+                      </button>
+                    </motion.div>
+                  ))
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
-
-        {selectedPriorities.length > 0 && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mt-8 text-sm text-inertia-secondary/50"
-          >
-            {selectedPriorities.length} {selectedPriorities.length === 1 ? "priority" : "priorities"}{" "}
-            selected — Inertia will tailor your experience around these
-          </motion.p>
-        )}
       </div>
     </AnimatedSection>
   );

@@ -1,63 +1,62 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Badge } from "@/components/ui/badge";
-import { HandDrawnArrow } from "./decorative-elements";
+import { Plus } from "lucide-react";
 import { AnimatedSection } from "./animated-section";
 
-const HABITS = [
-  "needs",
-  "goals",
-  "plans",
-  "routines",
-  "impulses",
-  "moods",
-  "seasons",
-  "milestones",
-];
+const PILLS_ROW_1 = ["needs", "goals"];
+const PILLS_ROW_2 = ["plans", "life"];
 
 export function AdaptiveHabits() {
   return (
-    <AnimatedSection className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
+    <AnimatedSection className="bg-[#FAFAF7] px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="text-inertia-primary font-serif text-3xl leading-tight font-bold md:text-4xl lg:text-5xl">
-          that adapt to your <span className="text-inertia-accent">habits</span>
+        <h2 className="font-[family-name:var(--font-frank)] text-3xl leading-tight font-medium tracking-[-0.01em] text-[#153828] md:text-4xl lg:text-[56px]">
+          that adapt to your habits
         </h2>
 
-        <div className="relative mt-12">
-          <HandDrawnArrow className="absolute -top-6 left-1/2 w-24 -translate-x-1/2 rotate-90 opacity-40 md:opacity-60" />
+        {/* Subtitle */}
+        <p className="mt-4 font-[family-name:var(--font-dm-sans)] text-lg text-[#8C938E]">
+          (Not the version of you that budgets perfectly)
+        </p>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            {HABITS.map((habit, i) => (
-              <motion.div
-                key={habit}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-              >
-                <Badge
-                  variant="outline"
-                  className="border-inertia-accent/30 text-inertia-primary hover:border-inertia-accent hover:bg-inertia-tint/40 cursor-default rounded-full bg-white px-5 py-2.5 font-sans text-sm font-medium transition-all"
+        {/* Pills with plus signs — matching Figma layout */}
+        <div className="mt-12 flex flex-col items-center gap-4">
+          {/* Row 1: needs + goals */}
+          <div className="flex items-center gap-3">
+            {PILLS_ROW_1.map((pill, i) => (
+              <div key={pill} className="flex items-center gap-3">
+                {i > 0 && <Plus size={16} className="text-[#C4DED0]" />}
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  className="rounded-[24px] border border-[#C4DED0] bg-white px-6 py-2.5 font-[family-name:var(--font-dm-mono)] text-sm font-medium tracking-[0.05em] text-[#153828] uppercase"
                 >
-                  {habit}
-                </Badge>
-              </motion.div>
+                  {pill}
+                </motion.span>
+              </div>
             ))}
           </div>
-
-          {/* Decorative triangle/mountain icon */}
-          <div className="mt-8 flex justify-center">
-            <svg width="40" height="36" viewBox="0 0 40 36" fill="none" aria-hidden="true">
-              <path d="M20 2L38 34H2L20 2Z" stroke="#40916C" strokeWidth="2" fill="#D8F3DC" />
-            </svg>
+          {/* Row 2: plans + life */}
+          <div className="flex items-center gap-3">
+            {PILLS_ROW_2.map((pill, i) => (
+              <div key={pill} className="flex items-center gap-3">
+                {i > 0 && <Plus size={16} className="text-[#C4DED0]" />}
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
+                  className="rounded-[24px] border border-[#C4DED0] bg-white px-6 py-2.5 font-[family-name:var(--font-dm-mono)] text-sm font-medium tracking-[0.05em] text-[#153828] uppercase"
+                >
+                  {pill}
+                </motion.span>
+              </div>
+            ))}
           </div>
         </div>
-
-        <p className="text-inertia-secondary/70 mx-auto mt-8 max-w-lg text-base leading-relaxed">
-          Inertia learns how you spend, save, and plan — then gently adjusts its guidance to match
-          your rhythm, not the other way around.
-        </p>
       </div>
     </AnimatedSection>
   );

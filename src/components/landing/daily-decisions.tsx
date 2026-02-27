@@ -1,53 +1,45 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Coffee, ShoppingBag, Utensils, Bus, Music, Zap } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { WavyConnector } from "./decorative-elements";
 import { AnimatedSection } from "./animated-section";
 
 const DECISIONS = [
-  { icon: Coffee, label: "Morning coffee", amount: "$4.50", category: "Ritual" },
-  { icon: ShoppingBag, label: "Grocery run", amount: "$62.30", category: "Essentials" },
-  { icon: Utensils, label: "Lunch out", amount: "$15.00", category: "Social" },
-  { icon: Bus, label: "Transit pass", amount: "$2.75", category: "Transport" },
-  { icon: Music, label: "Subscription", amount: "$9.99", category: "Entertainment" },
-  { icon: Zap, label: "Quick save", amount: "+$25", category: "Savings" },
+  { label: "LOANS", amount: "$900.00", subtext: "AMOUNT DUE" },
+  { label: "RENT", amount: "$1,000.00", subtext: "AMOUNT DUE" },
+  { label: "COFFEE", amount: "$6.00", subtext: "AMOUNT DUE" },
+  { label: "CAR PAYMENT", amount: "$450.00", subtext: "AMOUNT DUE" },
 ];
 
 export function DailyDecisions() {
   return (
-    <AnimatedSection id="how-it-works" className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
+    <AnimatedSection id="how-it-works" className="bg-[#FAFAF7] px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-center font-serif text-3xl leading-tight font-bold text-inertia-primary md:text-4xl lg:text-5xl">
+        <h2 className="text-center font-[family-name:var(--font-frank)] text-3xl leading-tight font-medium tracking-[-0.01em] text-[#153828] md:text-4xl lg:text-[56px]">
           We help you make a few
           <br />
-          <span className="text-inertia-accent">money decisions</span> each day
+          money decisions each day
         </h2>
 
-        <WavyConnector className="mx-auto mt-8 w-full max-w-lg" />
-
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
+        {/* Decision cards */}
+        <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
           {DECISIONS.map((item, i) => (
             <motion.div
               key={item.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="rounded-2xl border border-[#C4DED0]/40 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-lg"
             >
-              <Card className="group cursor-default border-inertia-tint/40 bg-white p-4 transition-all hover:-translate-y-1 hover:shadow-lg">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-inertia-tint/60 text-inertia-primary transition-colors group-hover:bg-inertia-accent group-hover:text-white">
-                  <item.icon size={20} />
-                </div>
-                <p className="text-sm font-semibold text-inertia-primary">{item.label}</p>
-                <p className="mt-1 font-serif text-lg font-bold text-inertia-primary">
-                  {item.amount}
-                </p>
-                <span className="mt-2 inline-block rounded-full bg-inertia-tint/40 px-2 py-0.5 text-xs font-medium text-inertia-accent">
-                  {item.category}
-                </span>
-              </Card>
+              <span className="font-[family-name:var(--font-dm-mono)] text-xs font-medium tracking-[0.05em] text-[#8C938E] uppercase">
+                {item.label}
+              </span>
+              <p className="mt-2 font-[family-name:var(--font-playfair)] text-2xl font-medium text-[#153828] md:text-3xl">
+                {item.amount}
+              </p>
+              <span className="mt-1 block font-[family-name:var(--font-dm-mono)] text-[10px] tracking-[0.05em] text-[#8C938E] uppercase">
+                {item.subtext}
+              </span>
             </motion.div>
           ))}
         </div>

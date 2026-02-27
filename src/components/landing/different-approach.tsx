@@ -1,83 +1,94 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Separator } from "@/components/ui/separator";
+import { Check, X } from "lucide-react";
 import { AnimatedSection } from "./animated-section";
 
 const COMPARISONS = [
   {
-    traditional: "Strict budgets you'll abandon in 2 weeks",
-    inertia: "Gentle guidance that adapts to your life",
+    category: "What they show",
+    inertia: "What matters right now",
+    other: "Everything at once",
   },
   {
-    traditional: "Guilt-driven notifications about overspending",
-    inertia: "Insights that help you understand why",
+    category: "Starting point",
+    inertia: "Your priorities & behavior",
+    other: "Accounts & Categories",
   },
   {
-    traditional: "One-size-fits-all categories and rules",
-    inertia: "Patterns unique to you, learned over time",
+    category: "Experience",
+    inertia: "Decide, act, move on",
+    other: "Track, review, repeat",
   },
   {
-    traditional: "Complicated dashboards with too many numbers",
-    inertia: "Simple daily decisions that compound",
+    category: "Assumption",
+    inertia: "You're busy — and human",
+    other: "You'll stay engaged",
+  },
+  {
+    category: "Goal support",
+    inertia: "Immediate steps → long term progress",
+    other: "Long-term planning",
   },
 ];
 
 export function DifferentApproach() {
   return (
-    <AnimatedSection className="bg-inertia-primary px-4 py-20 md:px-8 md:py-28">
+    <AnimatedSection className="bg-[#FAFAF7] px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-center font-serif text-3xl leading-tight font-bold text-white md:text-4xl lg:text-5xl">
-          A different approach
-          <br />
-          <span className="text-inertia-tint">to money</span>
+        <h2 className="text-center font-[family-name:var(--font-frank)] text-3xl leading-tight font-medium tracking-[-0.01em] text-[#153828] md:text-4xl lg:text-[56px]">
+          A different approach to money
         </h2>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
-          {/* Traditional */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
-          >
-            <h3 className="mb-4 text-sm font-semibold tracking-wide text-white/40 uppercase">
-              Traditional apps
-            </h3>
-            <div className="space-y-4">
-              {COMPARISONS.map((c, i) => (
-                <div key={i}>
-                  <p className="text-sm leading-relaxed text-white/60">{c.traditional}</p>
-                  {i < COMPARISONS.length - 1 && <Separator className="mt-4 bg-white/10" />}
-                </div>
-              ))}
+        {/* Comparison table */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-14 overflow-hidden rounded-2xl border border-[#C4DED0]/30 bg-white"
+        >
+          {/* Table header */}
+          <div className="grid grid-cols-3 border-b border-[#C4DED0]/30 bg-[#E2F7F1]/20">
+            <div className="px-6 py-4" />
+            <div className="border-l border-[#C4DED0]/30 px-6 py-4">
+              <span className="font-[family-name:var(--font-dm-mono)] text-xs font-medium tracking-[0.05em] text-[#2FA47A] uppercase">
+                Inertia
+              </span>
             </div>
-          </motion.div>
+            <div className="border-l border-[#C4DED0]/30 px-6 py-4">
+              <span className="font-[family-name:var(--font-dm-mono)] text-xs font-medium tracking-[0.05em] text-[#8C938E] uppercase">
+                Other Apps
+              </span>
+            </div>
+          </div>
 
-          {/* Inertia */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="rounded-2xl border border-inertia-tint/20 bg-inertia-tint/10 p-6"
-          >
-            <h3 className="mb-4 text-sm font-semibold tracking-wide text-inertia-tint uppercase">
-              Inertia
-            </h3>
-            <div className="space-y-4">
-              {COMPARISONS.map((c, i) => (
-                <div key={i}>
-                  <p className="text-sm leading-relaxed font-medium text-white">{c.inertia}</p>
-                  {i < COMPARISONS.length - 1 && (
-                    <Separator className="mt-4 bg-inertia-tint/20" />
-                  )}
-                </div>
-              ))}
+          {/* Table rows */}
+          {COMPARISONS.map((row, i) => (
+            <div
+              key={row.category}
+              className={`grid grid-cols-3 ${i < COMPARISONS.length - 1 ? "border-b border-[#C4DED0]/20" : ""}`}
+            >
+              <div className="px-6 py-4">
+                <span className="font-[family-name:var(--font-dm-sans)] text-sm font-medium text-[#153828]">
+                  {row.category}
+                </span>
+              </div>
+              <div className="flex items-start gap-2 border-l border-[#C4DED0]/20 px-6 py-4">
+                <Check size={14} className="mt-0.5 shrink-0 text-[#2FA47A]" />
+                <span className="font-[family-name:var(--font-dm-sans)] text-sm text-[#153828]">
+                  {row.inertia}
+                </span>
+              </div>
+              <div className="flex items-start gap-2 border-l border-[#C4DED0]/20 px-6 py-4">
+                <X size={14} className="mt-0.5 shrink-0 text-[#8C938E]" />
+                <span className="font-[family-name:var(--font-dm-sans)] text-sm text-[#8C938E]">
+                  {row.other}
+                </span>
+              </div>
             </div>
-          </motion.div>
-        </div>
+          ))}
+        </motion.div>
       </div>
     </AnimatedSection>
   );
