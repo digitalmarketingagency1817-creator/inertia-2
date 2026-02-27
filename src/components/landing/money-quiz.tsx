@@ -10,28 +10,24 @@ const PERSONALITIES = [
     label: "The Planner",
     desc: "Every dollar has a purpose",
     emoji: "📊",
-    color: "#2D6A4F",
   },
   {
     id: "avoider",
     label: "The Avoider",
     desc: "Out of sight, out of mind",
     emoji: "🙈",
-    color: "#40916C",
   },
   {
     id: "spontaneous",
     label: "The Spontaneous",
     desc: "Life's too short to budget",
     emoji: "✨",
-    color: "#52B788",
   },
   {
     id: "worrier",
     label: "The Worrier",
     desc: "Always expecting the worst",
     emoji: "😰",
-    color: "#74C69D",
   },
 ];
 
@@ -41,7 +37,7 @@ export function MoneyQuiz() {
   return (
     <section
       id="quiz"
-      className="relative overflow-hidden bg-inertia-primary px-4 py-20 md:px-8 md:py-28"
+      className="bg-inertia-primary relative overflow-hidden px-4 py-20 md:px-8 md:py-28"
     >
       {/* Background decoration */}
       <div
@@ -81,23 +77,31 @@ export function MoneyQuiz() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Card
+                role="button"
+                tabIndex={0}
                 onClick={() => setSelected(p.id)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelected(p.id);
+                  }
+                }}
                 className={`group cursor-pointer border-2 bg-white/95 p-6 text-center transition-all hover:-translate-y-1 hover:shadow-xl ${
                   selected === p.id
-                    ? "scale-[1.03] border-inertia-tint shadow-xl"
+                    ? "border-inertia-tint scale-[1.03] shadow-xl"
                     : "border-transparent"
                 }`}
               >
                 <div className="text-4xl">{p.emoji}</div>
-                <h3 className="mt-3 font-serif text-lg font-bold text-inertia-primary">
+                <h3 className="text-inertia-primary mt-3 font-serif text-lg font-bold">
                   {p.label}
                 </h3>
-                <p className="mt-1 text-sm text-inertia-secondary/60">{p.desc}</p>
+                <p className="text-inertia-secondary/60 mt-1 text-sm">{p.desc}</p>
                 {selected === p.id && (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="mt-3 inline-block rounded-full bg-inertia-accent px-3 py-1 text-xs font-semibold text-white"
+                    className="bg-inertia-accent mt-3 inline-block rounded-full px-3 py-1 text-xs font-semibold text-white"
                   >
                     That&apos;s you ✓
                   </motion.div>
