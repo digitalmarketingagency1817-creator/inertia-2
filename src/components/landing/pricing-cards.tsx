@@ -67,15 +67,15 @@ export function PricingCards() {
   const [tab, setTab] = useState<TabId>("pricing");
 
   return (
-    <AnimatedSection className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
+    <AnimatedSection id="pricing" className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-5xl">
-        <h2 className="text-center font-serif text-3xl leading-tight font-bold text-inertia-primary md:text-4xl lg:text-5xl">
+        <h2 className="text-inertia-primary text-center font-serif text-3xl leading-tight font-bold md:text-4xl lg:text-5xl">
           Simple, honest pricing
         </h2>
 
         {/* Tab switcher */}
         <div className="mt-8 flex justify-center">
-          <div className="inline-flex rounded-full border border-inertia-primary/10 bg-white p-1">
+          <div className="border-inertia-primary/10 inline-flex rounded-full border bg-white p-1">
             {(["features", "pricing"] as const).map((t) => (
               <button
                 key={t}
@@ -109,27 +109,27 @@ export function PricingCards() {
                 }`}
               >
                 {plan.highlighted && (
-                  <div className="absolute top-0 right-0 left-0 h-1 bg-inertia-accent" />
+                  <div className="bg-inertia-accent absolute top-0 right-0 left-0 h-1" />
                 )}
 
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-inertia-primary">{plan.name}</h3>
+                  <h3 className="text-inertia-primary font-serif text-xl font-bold">{plan.name}</h3>
                   <div className="mt-2 flex items-baseline gap-1">
-                    <span className="font-serif text-4xl font-bold text-inertia-primary">
+                    <span className="text-inertia-primary font-serif text-4xl font-bold">
                       {plan.price}
                     </span>
-                    <span className="text-sm text-inertia-secondary/50">{plan.period}</span>
+                    <span className="text-inertia-secondary/50 text-sm">{plan.period}</span>
                   </div>
-                  <p className="mt-2 text-sm text-inertia-secondary/60">{plan.desc}</p>
+                  <p className="text-inertia-secondary/60 mt-2 text-sm">{plan.desc}</p>
                 </div>
 
                 <div className="mt-6 flex-1 space-y-3">
                   {plan.features.map((f) => (
                     <div key={f.text} className="flex items-center gap-2.5">
                       {f.included ? (
-                        <Check size={16} className="shrink-0 text-inertia-accent" />
+                        <Check size={16} className="text-inertia-accent shrink-0" />
                       ) : (
-                        <Minus size={16} className="shrink-0 text-inertia-secondary/20" />
+                        <Minus size={16} className="text-inertia-secondary/20 shrink-0" />
                       )}
                       <span
                         className={`text-sm ${
@@ -146,8 +146,8 @@ export function PricingCards() {
                   asChild
                   className={`mt-8 w-full rounded-full ${
                     plan.highlighted
-                      ? "bg-inertia-primary text-white hover:bg-inertia-secondary"
-                      : "border border-inertia-primary/20 bg-white text-inertia-primary hover:bg-inertia-tint/30"
+                      ? "bg-inertia-primary hover:bg-inertia-secondary text-white"
+                      : "border-inertia-primary/20 text-inertia-primary hover:bg-inertia-tint/30 border bg-white"
                   }`}
                   variant={plan.highlighted ? "default" : "outline"}
                 >
