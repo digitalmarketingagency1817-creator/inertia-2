@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "motion/react";
 import { Check, Minus } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -61,36 +60,13 @@ const PLANS = [
   },
 ];
 
-type TabId = "features" | "pricing";
-
 export function PricingCards() {
-  const [tab, setTab] = useState<TabId>("pricing");
-
   return (
     <AnimatedSection id="pricing" className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-5xl">
         <h2 className="text-inertia-primary text-center font-serif text-3xl leading-tight font-bold md:text-4xl lg:text-5xl">
           Simple, honest pricing
         </h2>
-
-        {/* Tab switcher */}
-        <div className="mt-8 flex justify-center">
-          <div className="border-inertia-primary/10 inline-flex rounded-full border bg-white p-1">
-            {(["features", "pricing"] as const).map((t) => (
-              <button
-                key={t}
-                onClick={() => setTab(t)}
-                className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
-                  tab === t
-                    ? "bg-inertia-primary text-white"
-                    : "text-inertia-secondary/60 hover:text-inertia-primary"
-                }`}
-              >
-                {t === "features" ? "Features" : "Pricing"}
-              </button>
-            ))}
-          </div>
-        </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {PLANS.map((plan, i) => (
