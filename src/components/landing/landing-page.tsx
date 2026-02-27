@@ -21,24 +21,26 @@ import { Footer } from "./footer";
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-inertia-cream font-sans">
+    <div className="bg-inertia-cream min-h-screen font-sans">
       <Navigation />
-      <Splash />
-      <Hero />
-      <ClarityBanner />
-      <DailyDecisions />
-      <AdaptiveHabits />
-      <UnderstandPatterns />
-      <Highlights />
-      <FollowThrough />
-      <MoneyQuiz />
-      <Waitlist />
-      <Steadiness />
-      <WhyItWorks />
-      <FAQ />
-      <PrioritySelection />
-      <DifferentApproach />
-      <PricingCards />
+      <main>
+        <Splash />
+        <Hero />
+        <ClarityBanner />
+        <DailyDecisions />
+        <AdaptiveHabits />
+        <UnderstandPatterns />
+        <Highlights />
+        <FollowThrough />
+        <MoneyQuiz />
+        <Waitlist />
+        <Steadiness />
+        <WhyItWorks />
+        <FAQ />
+        <PrioritySelection />
+        <DifferentApproach />
+        <PricingCards />
+      </main>
       <Footer />
     </div>
   );
