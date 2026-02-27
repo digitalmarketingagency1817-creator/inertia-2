@@ -20,7 +20,7 @@ export function AdaptiveHabits() {
   return (
     <AnimatedSection className="bg-inertia-cream px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="font-serif text-3xl leading-tight font-bold text-inertia-primary md:text-4xl lg:text-5xl">
+        <h2 className="text-inertia-primary font-serif text-3xl leading-tight font-bold md:text-4xl lg:text-5xl">
           that adapt to your <span className="text-inertia-accent">habits</span>
         </h2>
 
@@ -38,7 +38,7 @@ export function AdaptiveHabits() {
               >
                 <Badge
                   variant="outline"
-                  className="cursor-default rounded-full border-inertia-accent/30 bg-white px-5 py-2.5 font-sans text-sm font-medium text-inertia-primary transition-all hover:border-inertia-accent hover:bg-inertia-tint/40"
+                  className="border-inertia-accent/30 text-inertia-primary hover:border-inertia-accent hover:bg-inertia-tint/40 cursor-default rounded-full bg-white px-5 py-2.5 font-sans text-sm font-medium transition-all"
                 >
                   {habit}
                 </Badge>
@@ -48,13 +48,13 @@ export function AdaptiveHabits() {
 
           {/* Decorative triangle/mountain icon */}
           <div className="mt-8 flex justify-center">
-            <svg width="40" height="36" viewBox="0 0 40 36" fill="none">
+            <svg width="40" height="36" viewBox="0 0 40 36" fill="none" aria-hidden="true">
               <path d="M20 2L38 34H2L20 2Z" stroke="#40916C" strokeWidth="2" fill="#D8F3DC" />
             </svg>
           </div>
         </div>
 
-        <p className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-inertia-secondary/70">
+        <p className="text-inertia-secondary/70 mx-auto mt-8 max-w-lg text-base leading-relaxed">
           Inertia learns how you spend, save, and plan — then gently adjusts its guidance to match
           your rhythm, not the other way around.
         </p>

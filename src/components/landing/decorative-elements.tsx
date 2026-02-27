@@ -10,6 +10,7 @@ export function GreenBlob({ className }: { className?: string }) {
       viewport={{ once: true }}
       transition={{ duration: 1.2, ease: "easeOut" }}
       className={className}
+      aria-hidden="true"
       style={{
         borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
         background: "linear-gradient(135deg, #D8F3DC 0%, #40916C 50%, #2D6A4F 100%)",
@@ -25,6 +26,7 @@ export function HandDrawnLine({ className }: { className?: string }) {
       fill="none"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <motion.path
         d="M5 25 C30 10, 60 40, 95 25 S160 10, 195 25"
@@ -48,6 +50,7 @@ export function HandDrawnArrow({ className }: { className?: string }) {
       fill="none"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <motion.path
         d="M5 45 C25 10, 60 5, 95 20"
@@ -83,6 +86,7 @@ export function WavyConnector({ className }: { className?: string }) {
       fill="none"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <motion.path
         d="M0 40 Q50 10 100 40 T200 40 T300 40 T400 40"
