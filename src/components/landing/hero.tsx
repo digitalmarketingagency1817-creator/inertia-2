@@ -30,7 +30,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right — hero lifestyle photo (large, no rounded corners) */}
+        {/* Right — hero lifestyle photo */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -38,7 +38,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative flex items-start justify-end"
         >
-          <div className="relative z-10 w-full overflow-hidden lg:w-[95%]">
+          <div className="relative z-10 w-full overflow-hidden rounded-[28px] lg:w-[95%]">
             <Image
               src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&h=900&fit=crop&crop=faces"
               alt="Women laughing in the sun with sunglasses"
