@@ -1,6 +1,5 @@
 "use client";
 
-import { Splash } from "./splash";
 import { Navigation } from "./navigation";
 import { Hero } from "./hero";
 import { AdaptiveHabits } from "./adaptive-habits";
@@ -22,15 +21,13 @@ export function LandingPage() {
     <div className="min-h-screen bg-[#FAFAF7] font-[family-name:var(--font-dm-sans)]">
       <Navigation />
       <main>
-        {/* Splash — full viewport intro with wordmark */}
-        <Splash />
         {/* Hero — lifestyle photo + main headline */}
         <Hero />
-        {/* Habits — "that adapt to your habits" with pills */}
+        {/* Habits — "that adapt to your habits" with keywords */}
         <AdaptiveHabits />
-        {/* Daily Decisions — decision cards */}
+        {/* Daily Decisions — stacked bill card */}
         <DailyDecisions />
-        {/* Clarity Banner — "When everything feels urgent..." + green CTA */}
+        {/* Clarity Banner — full-width green CTA */}
         <ClarityBanner />
         {/* Feature 01 — Understands your patterns */}
         <UnderstandPatterns />

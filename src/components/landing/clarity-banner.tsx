@@ -1,46 +1,68 @@
 "use client";
 
-import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
-
 export function ClarityBanner() {
   return (
-    <section className="bg-[#FAFAF7] px-4 py-12 md:px-8">
-      {/* "When everything feels urgent" text */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto mb-10 max-w-3xl text-center font-[family-name:var(--font-frank)] text-2xl leading-tight text-[#8C938E] md:text-3xl"
+    <section
+      className="w-full flex flex-col justify-center"
+      style={{
+        backgroundColor: "#0F3D2E",
+        minHeight: "clamp(500px, 65vw, 933px)",
+        paddingLeft: "clamp(24px, 18vw, 265px)",
+        paddingRight: "clamp(24px, 18vw, 265px)",
+      }}
+    >
+      <h1
+        className="font-normal"
+        style={{
+          fontFamily: "var(--font-frank), serif",
+          fontSize: "clamp(40px, 5.5vw, 80px)",
+          letterSpacing: "-0.8px",
+          lineHeight: "1.291",
+          maxWidth: "904px",
+        }}
       >
-        When everything feels urgent, nothing gets resolved
-      </motion.p>
+        <span style={{ color: "#FAFAF7" }}>Inertia brings clarity to </span>
+        <span style={{ color: "#C4DED0" }}>money decisions.</span>
+      </h1>
 
-      {/* Green banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-6xl rounded-3xl bg-[#0F3D2E] px-8 py-16 text-center md:px-16 md:py-20"
+      <a
+        href="#waitlist"
+        className="group mt-[17px] inline-flex items-center justify-center gap-2 w-[226px] h-[48px] rounded-full border border-white bg-transparent transition-colors duration-200 ease-in-out hover:bg-white"
       >
-        <h2 className="font-[family-name:var(--font-playfair)] text-3xl leading-tight font-medium tracking-[-0.015em] text-white md:text-5xl lg:text-[60px]">
-          Inertia brings clarity to
-          <br />
-          <span className="text-[#C4DED0] italic">money decisions.</span>
-        </h2>
-
-        <div className="mt-10">
-          <a
-            href="#waitlist"
-            className="inline-flex items-center gap-2 rounded-[24px] bg-white px-8 py-3.5 font-[family-name:var(--font-dm-sans)] text-sm font-semibold text-[#0F3D2E] transition-colors hover:bg-[#E2F7F1]"
-          >
-            Find my direction
-            <ArrowRight size={16} />
-          </a>
-        </div>
-      </motion.div>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          className="text-white group-hover:text-[#0F3D2E] transition-colors duration-200 ease-in-out"
+        >
+          <path
+            d="M8 1l2.12 4.3 4.74.69-3.43 3.34.81 4.72L8 11.77l-4.24 2.28.81-4.72L1.14 5.99l4.74-.69L8 1z"
+            fill="currentColor"
+          />
+        </svg>
+        <span
+          className="text-[16px] font-normal text-[#FAFAF7] group-hover:text-[#0F3D2E] transition-colors duration-200 ease-in-out"
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}
+        >
+          Find my direction
+        </span>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          className="text-white group-hover:text-[#0F3D2E] transition-colors duration-200 ease-in-out"
+        >
+          <path
+            d="M3.333 8h9.334M8.667 4l4 4-4 4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </a>
     </section>
   );
 }
